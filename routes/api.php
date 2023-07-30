@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('products', 'ProductsController@home')->name('api.home');
+Route::get('test', 'TestController@index')->name('test-index');
