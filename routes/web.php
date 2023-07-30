@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', 'ProductsController@home')->name('web.home');
+// Route::get('home', 'ProductsController@home')->name('web.home');
