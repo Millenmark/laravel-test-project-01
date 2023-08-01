@@ -13,6 +13,7 @@ class Post extends Model
         'body' => 'array',
     ];
 
+    // This is called accessor, it should start with "get" and ends with "Attribute"
     public function getTitleUpperCaseAttribute()
     {
         return strtoupper($this->title);
@@ -23,6 +24,38 @@ class Post extends Model
         * > \App\Models\Post::find(1)->title_upper_case
         * = "UNTITLED_02222"
         *
+        */
+    }
+
+    // This is called mutator
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtolower($value);
+        /*
+        * $ php artisan tinker
+        * Psy Shell v0.11.19 (PHP 7.4.33 — cli) by Justin Hileman
+        * > $post = \App\Models\Post::find(1)
+        * = App\Models\Post {#6459
+        *     id: 1,
+        *     title: "untitled_02222",
+        *     body: "[]",
+        *     created_at: "2023-07-30 10:17:12",
+        *     updated_at: "2023-07-30 10:17:12",
+        * }
+        * 
+        * > $post->title = 'HEYOOOOOO'
+        * = "HEYOOOOOO"
+        * 
+        * > $post
+        * = App\Models\Post {#6459
+        *     id: 1,
+        *     title: "heyoooooo",
+        *     body: "[]",
+        *     created_at: "2023-07-30 10:17:12",
+        *     updated_at: "2023-07-30 10:17:12",
+        * }
+        * 
+        * >
         */
     }
 
