@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Test;
 use App\Http\Requests\StoreTestRequest;
 use App\Http\Requests\UpdateTestRequest;
+use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
@@ -13,10 +14,11 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return 'HELLLO FROM TEST';
+        dump($request);
+        return response()->json(['data' => 'asssdfff']);
     }
 
     /**
