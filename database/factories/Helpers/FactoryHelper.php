@@ -6,7 +6,7 @@ class FactoryHelper
 {
   /**
    * This function will get a random model id  from the database.
-   * @param string | HasFactory $model
+   * @param string|HasFactory $model
    */
   public static function getRandomModelId(string $model)
   {
