@@ -22,5 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/test', 'TestController@index')->name('test-index');
 
 // User Routes
-Route::get('/users', 'UserController@index');
+Route::get('/users', 'UserController@index')->name('users-index');
 Route::get('/users/{user}', 'UserController@show');
