@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -15,7 +17,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // $posts = Post::query()->paginate(5); //paginated
+
+        // $posts = Post::where('id', '=', 1)->get();
+
+        // $post = Post::find(1);
+
+        return Post::get();
     }
 
     /**
@@ -26,7 +34,25 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $validator = Validator::make(request()->all(), [
+            'title' => 'required|string|max:255',
+            'body' => 'required|string|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        Post::create([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+        ]);
+
+        return response()->json([
+            'message' => 'Post created successfully'
+        ]);
     }
 
     /**
@@ -37,7 +63,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post;
     }
 
     /**
