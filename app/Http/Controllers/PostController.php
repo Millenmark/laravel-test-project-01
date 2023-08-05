@@ -52,7 +52,7 @@ class PostController extends Controller
 
         return response()->json([
             'message' => 'Post created successfully'
-        ]);
+        ], 201);
     }
 
     /**
@@ -75,7 +75,28 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validator = Validator::make(request()->all(), [
+            'title' => 'nullable|string|max:255',
+            'body' => 'nullable|string|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first(),
+            ]);
+        }
+
+        // $post->update($request->only(['title', 'body']));
+
+        $post->fill([
+            'title' => $request->title ?? null, // null or $post->title (but you cant nullify if ever)
+            'body' => $request->body ?? null,
+        ])->save();
+
+        return response()
+            ->json([
+                'message' => 'Post updated successfully'
+            ]);
     }
 
     /**
@@ -86,6 +107,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return response()->json(['message' => 'Post deleted successfully']);
     }
 }
