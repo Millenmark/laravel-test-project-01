@@ -29,3 +29,4 @@ Route::get('/posts', 'PostController@index')->name('posts-all');
 Route::get('/posts/{post}', 'PostController@show')->name('posts-show');
 Route::post('/posts', 'PostController@store')->name('posts-create');
 Route::put('/posts/{post}', 'PostController@update')->name('posts-update');
+Route::delete('/posts/{post}', 'PostController@destroy')->name('posts-delete');
