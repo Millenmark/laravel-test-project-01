@@ -24,3 +24,8 @@ Route::get('/test', 'TestController@index')->name('test-index');
 // User Routes
 Route::get('/users', 'UserController@index')->name('users-index');
 Route::get('/users/{user}', 'UserController@show');
+
+// Post Routes
+Route::get('/posts', 'PostController@index')->name('posts-all');
+Route::get('/posts/{post}', 'PostController@show')->name('posts-show');
+Route::post('/posts', 'PostController@store')->name('posts-create');
