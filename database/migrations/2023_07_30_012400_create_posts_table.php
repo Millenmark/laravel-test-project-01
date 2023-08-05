@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->json('body')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
