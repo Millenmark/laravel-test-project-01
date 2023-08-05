@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -23,7 +22,11 @@ class PostController extends Controller
 
         // $post = Post::find(1);
 
-        return Post::get();
+        // return Post::withTrashed()->get(); 
+
+        // return Post::onlyTrashed()->get();
+
+        return Post::all();
     }
 
     /**
